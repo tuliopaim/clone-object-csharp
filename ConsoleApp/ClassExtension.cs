@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    public static class ClassExtension
+    public static class CloneExtension
     {
         public static T CloneObject<T>(this T obj)
         {
