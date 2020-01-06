@@ -11,7 +11,8 @@ namespace ConsoleApp
         public static T CloneObject<T>(this T obj)
         {
             T newObj = (T)Activator.CreateInstance(typeof(T));
-            var properties = GetProperties(typeof(T));
+
+            var properties = typeof(T).GetProperties();
 
             foreach (var property in properties)
             {
@@ -25,23 +26,5 @@ namespace ConsoleApp
 
             return newObj;
         }
-
-        public static List<Variable> GetProperties(Type type)
-        {
-            var propertyValues = type.GetProperties();
-            var result = new List<Variable>();
-
-            foreach (var property in propertyValues)
-            {
-                result.Add(new Variable
-                {
-                    Name = property.Name,
-                    Type = property.PropertyType,
-                });
-            }
-
-            return result;
-        }
-
     }
 }
