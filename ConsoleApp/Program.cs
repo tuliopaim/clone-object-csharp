@@ -21,24 +21,32 @@ namespace ConsoleApp
             {
                 Codigo = "A",
                 Quantidade = 100,
-                Endereco = "End-A",
-                Lote = "Lote-A"
+                Endereco = new EnderecoItem
+                {
+                    Codigo = 1,
+                    Endereco = "End-A",
+                },
             };
 
-            var itemB = AlteraValorSemClone("B", 400, itemA);
+            var itemB = AlteraValorSemClone("B", 400, new EnderecoItem { Codigo = 2, Endereco = "End-B" }, itemA);
 
             Console.WriteLine(itemA);
             Console.WriteLine(itemB);
                         
             Console.WriteLine("COM CLONE");
+
             itemA = new Item
             {
                 Codigo = "A",
                 Quantidade = 100,
-                Endereco = "End-A",
-                Lote = "Lote-A"
+                Endereco = new EnderecoItem
+                {
+                    Codigo = 1,
+                    Endereco = "End-A",
+                },
             };
-            itemB = AlteraValorComClone("B", 400, itemA);
+
+            itemB = AlteraValorComClone("B", 400, new EnderecoItem { Codigo = 2, Endereco = "End-B"}, itemA);
 
             Console.WriteLine(itemA);
             Console.WriteLine(itemB);
@@ -46,22 +54,24 @@ namespace ConsoleApp
             Console.ReadLine();
         }
 
-        public static Item AlteraValorComClone(string codigo, int quantidade, Item item)
+        public static Item AlteraValorComClone(string codigo, int quantidade, EnderecoItem endereco, Item item)
         {
             var itemB = item.CloneObject();
 
             itemB.Codigo = codigo;
             itemB.Quantidade = quantidade;
+            itemB.Endereco = endereco;
 
             return itemB;
         }
 
-        public static Item AlteraValorSemClone(string codigo, int quantidade, Item item)
+        public static Item AlteraValorSemClone(string codigo, int quantidade, EnderecoItem endereco, Item item)
         {
             var itemB = item;
 
             itemB.Codigo = codigo;
             itemB.Quantidade = quantidade;
+            itemB.Endereco = endereco;
 
             return itemB;
         }
@@ -72,14 +82,25 @@ namespace ConsoleApp
     {
         public string Codigo { get; set; }
         public int Quantidade { get; set; }
-        public string Endereco { get; set; }
+        public EnderecoItem Endereco { get; set; }
         public string Lote { get; set; }
 
         public override string ToString()
         {
-            return $"Codigo {Codigo} - Lote {Lote} - Quantidade: {Quantidade}";
+            return $"Codigo {Codigo} - Quantidade: {Quantidade} - {Endereco}";
         }
 
+    }
+
+    public class EnderecoItem
+    {
+        public int Codigo { get; set; }
+        public string Endereco { get; set; }
+
+        public override string ToString()
+        {
+            return $"Endereco {Endereco} - codigo {Codigo}";
+        }
     }
 
     public static class ClassExtention
