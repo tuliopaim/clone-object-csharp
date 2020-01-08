@@ -54,6 +54,7 @@ namespace ConsoleApp
             var itemB = item.CloneObject();
 
             itemB.Codigo = codigo;
+            itemB.Quantidade = quantidade;
             itemB.Endereco = endereco;
 
             return itemB;

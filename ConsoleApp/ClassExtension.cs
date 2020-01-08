@@ -14,12 +14,10 @@ namespace ConsoleApp
         /// </summary>
         public static T CloneObject<T>(this T obj)
         {
-            T newObj = (T)Activator.CreateInstance(typeof(T));
+            var newObj = (T)Activator.CreateInstance(typeof(T));
+            var props = typeof(T).GetProperties().ToList();
 
-            typeof(T).GetProperties().ToList().ForEach(prop =>
-            {
-                prop.SetValue(newObj, prop.GetValue(obj));
-            });
+            props.ForEach(prop => prop.SetValue(newObj, prop.GetValue(obj)));
 
             return newObj;
         }
