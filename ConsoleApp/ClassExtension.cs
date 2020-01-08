@@ -18,8 +18,7 @@ namespace ConsoleApp
 
             typeof(T).GetProperties().ToList().ForEach(prop =>
             {
-                var value = prop.GetValue(obj);
-                if (value != null) prop.SetValue(newObj, value);
+                prop.SetValue(newObj, prop.GetValue(obj));
             });
 
             return newObj;

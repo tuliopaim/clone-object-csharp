@@ -34,7 +34,6 @@ namespace ConsoleApp
             itemA = new Item
             {
                 Codigo = "A",
-                Quantidade = 100,
                 Endereco = new EnderecoItem
                 {
                     Codigo = 1,
@@ -55,7 +54,6 @@ namespace ConsoleApp
             var itemB = item.CloneObject();
 
             itemB.Codigo = codigo;
-            itemB.Quantidade = quantidade;
             itemB.Endereco = endereco;
 
             return itemB;
@@ -79,7 +77,7 @@ namespace ConsoleApp
         public string Codigo { get; set; }
         public int Quantidade { get; set; }
         public EnderecoItem Endereco { get; set; }
-        public string Lote { get; set; }
+        public DateTime Data { get; set; }
 
         public override string ToString()
         {
