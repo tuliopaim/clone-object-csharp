@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace ConsoleApp
 {
-    public struct Variable
-    {
-        public string Name;
-        public Type Type;
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
             Console.WriteLine("SEM CLONE");
+
             var itemA = new Item
             {
                 Codigo = "A",
@@ -32,7 +27,8 @@ namespace ConsoleApp
 
             Console.WriteLine(itemA);
             Console.WriteLine(itemB);
-                        
+
+            
             Console.WriteLine("COM CLONE");
 
             itemA = new Item
@@ -46,7 +42,7 @@ namespace ConsoleApp
                 },
             };
 
-            itemB = AlteraValorComClone("B", 400, new EnderecoItem { Codigo = 2, Endereco = "End-B"}, itemA);
+            itemB = AlteraValorComClone("B", 400, new EnderecoItem { Codigo = 2, Endereco = "End-B" }, itemA);
 
             Console.WriteLine(itemA);
             Console.WriteLine(itemB);
