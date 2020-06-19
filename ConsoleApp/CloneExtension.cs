@@ -9,16 +9,16 @@ namespace ClassClone
     public static class CloneExtension
     {
         /// <summary>
-        /// Returns a new instance of an object.
+        /// Create a new instance of an object.
         /// </summary>
-        public static T CloneObject<T>(this T obj) where T : class, new()
+        public static void CloneObject<T>(this T obj, T newObj) where T : class
         {
-            var newObj = new T();
-            var props = typeof(T).GetProperties().ToList();
+            var props = typeof(T)
+                .GetProperties()
+                .Where(p => p.CanWrite)
+                .ToList();
 
             props.ForEach(prop => prop.SetValue(newObj, prop.GetValue(obj)));
-
-            return newObj;
         }
     }
 }
